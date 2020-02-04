@@ -17,6 +17,26 @@ export default function handleMovement(player) {
 		}
 	}
 
+	function getSpriteLocation(direction, walkIndex) {
+		switch (direction) {
+			case 'SOUTH':
+				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
+			case 'EAST':
+				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
+			case 'WEST':
+				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
+			case 'NORTH':
+				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
+			default:
+				return;
+		}
+	}
+
+	function getWalkIndex() {
+		const walkIndex = store.getState().player.walkIndex;
+		return walkIndex >= 7 ? 0 : walkIndex + 1;
+	}
+
 	// player unable to move through objects
 	function observeImpassible(oldPos, newPos) {
 		const tiles = store.getState().map.tiles;
@@ -43,11 +63,15 @@ export default function handleMovement(player) {
 	}
 
 	// moves the player
-	function dispatchMove(newPos) {
+	function dispatchMove(direction, newPos) {
+		const walkIndex = getWalkIndex();
 		store.dispatch({
 			type: 'MOVE_PLAYER',
 			payload: {
 				position: newPos,
+				direction: direction,
+				walkIndex,
+				spriteLocation: getSpriteLocation(direction, walkIndex),
 			},
 		});
 	}
@@ -61,7 +85,7 @@ export default function handleMovement(player) {
 			observeBoundaries(oldPos, newPos) === true &&
 			observeImpassible(oldPos, newPos) === true
 		) {
-			return dispatchMove(newPos);
+			return dispatchMove(direction, newPos);
 		} else {
 			return false;
 		}
@@ -71,13 +95,13 @@ export default function handleMovement(player) {
 	function handleKeyDown(e) {
 		e.preventDefault();
 		switch (e.keyCode) {
-			case 37: // left arrow
+			case 65: // a
 				return attemptMove('WEST');
-			case 38: // up arrow
+			case 87: // w
 				return attemptMove('NORTH');
-			case 39: // right arrow
+			case 68: // d
 				return attemptMove('EAST');
-			case 40: // down arrow
+			case 83: // s
 				return attemptMove('SOUTH');
 			default:
 				console.log(e.keyCode);
