@@ -1,8 +1,16 @@
 import React from 'react';
 import Map from '../map';
 import Player from '../player';
+import { tiles } from '../../data/maps/1';
+import store from '../../config/store';
 
 const World = props => {
+	store.dispatch({
+		type: 'ADD_TILES',
+		payload: {
+			tiles,
+		},
+	});
 	return (
 		<div
 			style={{
