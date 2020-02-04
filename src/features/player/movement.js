@@ -11,35 +11,35 @@ export default function handleMovement(player) {
 			case 'EAST':
 				return [oldPos[0] + SPRITE_SIZE, oldPos[1]]; // x axis + 40
 			case 'SOUTH':
-				return [oldPos[0], oldPos[1] + SPRITE_SIZE]; // y axios - 40
+				return [oldPos[0], oldPos[1] + SPRITE_SIZE]; // y axios + 40
 			default:
 				return;
 		}
 	}
 
-	// make player unable to move through rocks and trees
+	// player unable to move through objects
 	function observeImpassible(oldPos, newPos) {
 		const tiles = store.getState().map.tiles;
-		const y = newPos[1] / SPRITE_SIZE;
-		const x = newPos[0] / SPRITE_SIZE;
+		const y = newPos[1] / SPRITE_SIZE; // divide by 40 to get 20 tiles
+		const x = newPos[0] / SPRITE_SIZE; // divide by 40 get 10 tiles
 		const nextTile = tiles[y][x];
-		return nextTile <= 4;
-	}
-
-	// make sure player is in bounds before moving
-	function observeBoundaries(oldPos, newPos) {
-		const y = newPos[1] / SPRITE_SIZE; // divide by sprite size to get 40 tiles
-		const x = newPos[0] / SPRITE_SIZE;
-		if (
-			x >= 0 &&
-			x <= MAP_WIDTH - SPRITE_SIZE && // subtract sprite size at the end so character can't walk off screen by one tile
-			y >= 0 &&
-			y <= MAP_HEIGHT - SPRITE_SIZE
-		) {
+		if (nextTile < 5) {
+			// we can move through 0-4
 			return true;
 		} else {
+			// cannot move through tiles > 5
 			return false;
 		}
+	}
+
+	// player can only move within these boundaries
+	function observeBoundaries(oldPos, newPos) {
+		return (
+			newPos[0] >= 0 &&
+			newPos[0] <= MAP_WIDTH - SPRITE_SIZE &&
+			newPos[1] >= 0 &&
+			newPos[1] <= MAP_HEIGHT - SPRITE_SIZE
+		);
 	}
 
 	// moves the player
@@ -52,12 +52,19 @@ export default function handleMovement(player) {
 		});
 	}
 
+	//  checks for boundaries or impassible objects before dispatching move
 	function attemptMove(direction) {
 		const oldPos = store.getState().player.position;
 		const newPos = getNewPosition(oldPos, direction);
 		// if observeBoundaries and observerImpassible return true then we can dispatch our move
-		if (observeBoundaries(oldPos, newPos) && observeImpassible(oldPos, newPos))
-			dispatchMove(newPos);
+		if (
+			observeBoundaries(oldPos, newPos) === true &&
+			observeImpassible(oldPos, newPos) === true
+		) {
+			return dispatchMove(newPos);
+		} else {
+			return false;
+		}
 	}
 
 	// links arrow keys to directions
