@@ -1,0 +1,33 @@
+.tile {
+	display: inline-flex;
+	background-color: green;
+}
+
+.row {
+	margin: 0;
+}
+
+.grass {
+	background-color: green;
+}
+
+.rock {
+	background-image: url('../../tiles/rock.png');
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+}
+
+.tree {
+	background-image: url('../../tiles/tree.png');
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+}
+
+.chest {
+	background-image: url('../../tiles/chest_closed.png');
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+}
