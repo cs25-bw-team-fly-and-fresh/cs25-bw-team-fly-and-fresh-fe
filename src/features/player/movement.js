@@ -95,16 +95,16 @@ export default function handleMovement(player) {
 	function handleKeyDown(e) {
 		e.preventDefault();
 		switch (e.keyCode) {
-			case 65: // a
+			case 37: // left arrow
 				return attemptMove('WEST');
-			case 87: // w
+			case 38: // up arrow
 				return attemptMove('NORTH');
-			case 68: // d
+			case 39: // right arrow
 				return attemptMove('EAST');
-			case 83: // s
+			case 40: // down arrow
 				return attemptMove('SOUTH');
 			default:
-				console.log(e.keyCode);
+				return;
 		}
 	}
 

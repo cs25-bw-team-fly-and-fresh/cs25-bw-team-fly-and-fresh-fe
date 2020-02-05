@@ -26,9 +26,7 @@ function MapTile(props) {
 			style={{
 				height: SPRITE_SIZE,
 				width: SPRITE_SIZE,
-			}}>
-			{/* {props.tile} */}
-		</div>
+			}}></div>
 	);
 }
 
@@ -48,7 +46,6 @@ const Map = props => {
 			style={{
 				width: MAP_WIDTH,
 				height: MAP_HEIGHT,
-				// border: '4px solid white',
 			}}>
 			{props.tiles.map(row => (
 				<MapRow tiles={row} />
