@@ -1,7 +1,8 @@
 import store from '../../config/store';
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants';
-
-export default function handleMovement(player) {
+// import { useHistory } from 'react-router-dom';
+// let history = useHistory();
+export default function handleMovement(player, props) {
 	function getNewPosition(oldPos, direction) {
 		switch (direction) {
 			case 'WEST':
@@ -104,6 +105,7 @@ export default function handleMovement(player) {
 			case 40: // down arrow
 				return attemptMove('SOUTH');
 			default:
+				// console.log(e);
 				return;
 		}
 	}
@@ -111,5 +113,6 @@ export default function handleMovement(player) {
 	window.addEventListener('keydown', e => {
 		handleKeyDown(e);
 	});
+
 	return player;
 }

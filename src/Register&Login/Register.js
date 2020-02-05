@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import store from '../config/store';
 
 const Register = props => {
-	console.log(props);
+	// console.log(props);
 
 	const [user, setUser] = useState({
 		username: '',
@@ -12,50 +10,44 @@ const Register = props => {
 		password1: '',
 		password2: '',
 	});
-	// console.log(user);
 
 	const userInput = e => {
-		console.log(e);
+		// console.log(e);
 		setUser({
 			...user,
 			[e.target.name]: e.target.value,
-			// [e.user.username]: user.username.value,
 		});
 		console.log(user);
 	};
 
-	// console.log(userInput);
-
-	// const userRegistration = e => {
-	// 	e.preventDefault();
-	// 	axios
-	// 		.post(
-	// 			`https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/registration/`,
-	// 			user,
-	// 		)
-	// 		.then(res => {
-	// 			console.log(res);
-	// 			// i think we actualy need cookies here instead of local storage for the way the djangos set up idk
-	// 			// localStorage.setItem('token', res.data.token);
-	// 			props.history.push('/login');
-	// 		})
-	// 		.catch(err => console.log(err, 'for sure error'));
-	// };
+	const userRegistration = e => {
+		e.preventDefault();
+		axios
+			.post(
+				`https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/registration/`,
+				user,
+			)
+			.then(res => {
+				console.log(res);
+				props.history.push('/login');
+			})
+			.catch(err => console.log(err, 'for sure error'));
+	};
 
 	return (
 		<div>
-			<form /*onSubmit={userRegistration}*/>
+			<form onSubmit={userRegistration}>
 				<label>username</label> <br />
 				<input
-					// id='username'
+					id='username'
 					name='username'
 					placeholder='username'
-					// type='text'
+					type='text'
 					onChange={userInput}
 					value={user.username}
 					autoComplete='off'
 				/>
-				{/* <br />
+				<br />
 				<label>email address</label> <br />
 				<input
 					name='email'
@@ -86,18 +78,10 @@ const Register = props => {
 					autoComplete='off'
 				/>
 				<br />
-				<button>log in</button> */}
+				<button>log in</button>
 			</form>
 		</div>
 	);
 };
 
 export default Register;
-
-// const mapStateToProps = state => {
-// 	return {
-// 		...state.register,
-// 	};
-// };
-
-// export default connect(mapStateToProps)(Register);

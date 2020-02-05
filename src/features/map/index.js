@@ -43,6 +43,7 @@ function MapRow(props) {
 const Map = props => {
 	return (
 		<div
+			id='themap'
 			style={{
 				width: MAP_WIDTH,
 				height: MAP_HEIGHT,
