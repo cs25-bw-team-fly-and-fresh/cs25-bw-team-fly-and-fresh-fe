@@ -17,7 +17,7 @@ const World = props => {
 	const [currentRoom, setCurrentRoom] = useState([]);
 
 	useEffect(() => {
-		if (position[0] === 0) {
+		if (position[0] === 40) {
 			authAxios()
 				.post(
 					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
@@ -30,7 +30,7 @@ const World = props => {
 					return (position[0] = 720);
 				})
 				.catch(err => console.log(err));
-		} else if (position[0] === 760) {
+		} else if (position[0] === 720) {
 			authAxios()
 				.post(
 					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
@@ -43,7 +43,7 @@ const World = props => {
 					return (position[0] = 40);
 				})
 				.catch(err => console.log(err));
-		} else if (position[1] === 0) {
+		} else if (position[1] === 40) {
 			authAxios()
 				.post(
 					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',

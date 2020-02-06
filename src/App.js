@@ -7,9 +7,9 @@ function App() {
 	return (
 		<>
 			<Switch>
-				<Route exact path='/' />
+				<Route exact path='/' component={Register} />
 				<Route path='/game' component={World} />
-				<Route path='/register' component={Register} />
+				{/* <Route path='/register' component={Register} /> */}
 				<Route path='/login' component={Login} />
 			</Switch>
 		</>
