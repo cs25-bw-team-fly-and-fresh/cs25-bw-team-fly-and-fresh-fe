@@ -21,7 +21,7 @@ const Login = props => {
 		e.preventDefault();
 		authAxios()
 			.post(
-				`http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/login/`,
+				`https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/login/`,
 				user,
 			)
 			.then(res => {
@@ -34,9 +34,9 @@ const Login = props => {
 	return (
 		<div className='container'>
 			<div className='inner-container'>
-				<div className='box' >
+				<div className='box'>
 					<h1>Login</h1>
-					<form onSubmit={userLogin} >
+					<form onSubmit={userLogin}>
 						<label>username</label> <br />
 						<input
 							name='username'
@@ -68,7 +68,12 @@ const Login = props => {
 						/>
 						<br />
 						<button>Login</button>
-						<p>Not a member? <Link to='/register'><span>Sign Up</span></Link></p>
+						<p>
+							Not a member?{' '}
+							<Link to='/register'>
+								<span>Sign Up</span>
+							</Link>
+						</p>
 					</form>
 				</div>
 			</div>
