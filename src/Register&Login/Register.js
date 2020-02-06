@@ -24,7 +24,7 @@ const Register = props => {
 		e.preventDefault();
 		axios
 			.post(
-				`https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/registration/`,
+				`http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/registration/`,
 				user,
 			)
 			.then(res => {
