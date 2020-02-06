@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import authAxios from '../utils/authAxios';
 
 const Login = props => {
 	// console.log(props);
@@ -19,14 +19,13 @@ const Login = props => {
 
 	const userLogin = e => {
 		e.preventDefault();
-		axios
+		authAxios()
 			.post(
 				`http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/login/`,
 				user,
 			)
 			.then(res => {
 				console.log(res);
-
 				props.history.push('/game');
 			})
 			.catch(err => console.log(err, 'for sure error'));
