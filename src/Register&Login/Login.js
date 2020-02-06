@@ -44,7 +44,7 @@ const Login = props => {
 							type='text'
 							onChange={userInput}
 							value={user.username}
-							// autoComplete='off'
+							autoComplete='off'
 						/>
 						<br />
 						<label>email</label> <br />
