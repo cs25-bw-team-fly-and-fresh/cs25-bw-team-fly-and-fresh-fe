@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import authAxios from '../utils/authAxios';
+import { Link } from 'react-router-dom';
+import './loginStyles.css';
 
 const Login = props => {
-	// console.log(props);
 	const [user, setUser] = useState({
 		username: '',
 		email: '',
@@ -14,7 +15,6 @@ const Login = props => {
 			...user,
 			[e.target.name]: e.target.value,
 		});
-		// console.log(user);
 	};
 
 	const userLogin = e => {
@@ -32,40 +32,46 @@ const Login = props => {
 	};
 
 	return (
-		<div>
-			<form onSubmit={userLogin}>
-				<label>username</label> <br />
-				<input
-					name='username'
-					placeholder='username'
-					type='text'
-					onChange={userInput}
-					value={user.username}
-					autoComplete='off'
-				/>
-				<br />
-				<label>email</label> <br />
-				<input
-					name='email'
-					placeholder='email'
-					type='email'
-					onChange={userInput}
-					value={user.email}
-					autoComplete='off'
-				/>
-				<br />
-				<label>password</label> <br />
-				<input
-					name='password'
-					placeholder='password'
-					type='password'
-					onChange={userInput}
-					value={user.password}
-					autoComplete='off'
-				/>
-				<br />
-				<button>log in</button>
-			</form>
+		<div className='container'>
+			<div className='inner-container'>
+				<div className='box' >
+					<h1>Login</h1>
+					<form onSubmit={userLogin} >
+						<label>username</label> <br />
+						<input
+							name='username'
+							placeholder='username'
+							type='text'
+							onChange={userInput}
+							value={user.username}
+							autoComplete='off'
+						/>
+						<br />
+						<label>email</label> <br />
+						<input
+							name='email'
+							placeholder='email'
+							type='email'
+							onChange={userInput}
+							value={user.email}
+							autoComplete='off'
+						/>
+						<br />
+						<label>password</label> <br />
+						<input
+							name='password'
+							placeholder='password'
+							type='password'
+							onChange={userInput}
+							value={user.password}
+							autoComplete='off'
+						/>
+						<br />
+						<button>Login</button>
+						<p>Not a member? <Link to='/register'><span>Sign Up</span></Link></p>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 };
