@@ -12,7 +12,6 @@ ReactDOM.render(
 		<Router>
 			<Route render={props => <App {...props} />} />
 		</Router>
-		,
 	</Provider>,
 	document.getElementById('root'),
 );
