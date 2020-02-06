@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import authAxios from '../utils/authAxios';
 import { Link } from 'react-router-dom';
 import './loginStyles.css';
 
@@ -19,7 +19,7 @@ const Login = props => {
 
 	const userLogin = e => {
 		e.preventDefault();
-		axios
+		authAxios()
 			.post(
 				`http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/login/`,
 				user,

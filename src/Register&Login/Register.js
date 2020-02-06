@@ -26,7 +26,16 @@ const Register = props => {
 			)
 			.then(res => {
 				console.log(res);
+				localStorage.setItem('key', res.data.key);
 				props.history.push('/login');
+				document.cookie.split(';').forEach(function(c) {
+					document.cookie = c
+						.replace(/^ +/, '')
+						.replace(
+							/=.*/,
+							'=;expires=' + new Date().toUTCString() + ';path=/',
+						);
+				});
 			})
 			.catch(err => console.log(err, 'for sure error'));
 	};

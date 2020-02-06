@@ -34,7 +34,7 @@ function MapRow(props) {
 	return (
 		<div className='row'>
 			{props.tiles.map(tile => (
-				<MapTile tile={tile} />
+				<MapTile key={Math.random()} tile={tile} />
 			))}
 		</div>
 	);
@@ -49,7 +49,7 @@ const Map = props => {
 				height: MAP_HEIGHT,
 			}}>
 			{props.tiles.map(row => (
-				<MapRow tiles={row} />
+				<MapRow key={Math.random()} tiles={row} />
 			))}
 		</div>
 	);

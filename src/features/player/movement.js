@@ -1,17 +1,18 @@
 import store from '../../config/store';
 import { SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT } from '../../config/constants';
+import authAxios from '../../utils/authAxios';
 // import { useHistory } from 'react-router-dom';
 // let history = useHistory();
 export default function handleMovement(player, props) {
 	function getNewPosition(oldPos, direction) {
 		switch (direction) {
-			case 'WEST':
+			case 'w':
 				return [oldPos[0] - SPRITE_SIZE, oldPos[1]]; //  x axis - 40
-			case 'NORTH':
+			case 'n':
 				return [oldPos[0], oldPos[1] - SPRITE_SIZE]; // y axis - 40
-			case 'EAST':
+			case 'e':
 				return [oldPos[0] + SPRITE_SIZE, oldPos[1]]; // x axis + 40
-			case 'SOUTH':
+			case 's':
 				return [oldPos[0], oldPos[1] + SPRITE_SIZE]; // y axios + 40
 			default:
 				return;
@@ -20,13 +21,13 @@ export default function handleMovement(player, props) {
 
 	function getSpriteLocation(direction, walkIndex) {
 		switch (direction) {
-			case 'SOUTH':
+			case 's':
 				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
-			case 'EAST':
+			case 'e':
 				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
-			case 'WEST':
+			case 'w':
 				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
-			case 'NORTH':
+			case 'n':
 				return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
 			default:
 				return;
@@ -97,13 +98,13 @@ export default function handleMovement(player, props) {
 		e.preventDefault();
 		switch (e.keyCode) {
 			case 37: // left arrow
-				return attemptMove('WEST');
+				return attemptMove('w');
 			case 38: // up arrow
-				return attemptMove('NORTH');
+				return attemptMove('n');
 			case 39: // right arrow
-				return attemptMove('EAST');
+				return attemptMove('e');
 			case 40: // down arrow
-				return attemptMove('SOUTH');
+				return attemptMove('s');
 			default:
 				// console.log(e);
 				return;
