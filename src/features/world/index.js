@@ -20,7 +20,7 @@ const World = props => {
 		if (position[0] === 40) {
 			authAxios()
 				.post(
-					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
+					'https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
 					{ direction: direction.toLowerCase() },
 				)
 				.then(res => {
@@ -33,7 +33,7 @@ const World = props => {
 		} else if (position[0] === 720) {
 			authAxios()
 				.post(
-					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
+					'https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
 					{ direction: direction.toLowerCase() },
 				)
 				.then(res => {
@@ -46,7 +46,7 @@ const World = props => {
 		} else if (position[1] === 40) {
 			authAxios()
 				.post(
-					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
+					'https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
 					{ direction: direction.toLowerCase() },
 				)
 				.then(res => {
@@ -59,7 +59,7 @@ const World = props => {
 		} else if (position[1] === 360) {
 			authAxios()
 				.post(
-					'http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
+					'https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/move/',
 					{ direction: direction.toLowerCase() },
 				)
 				.then(res => {
@@ -74,7 +74,7 @@ const World = props => {
 
 	useEffect(() => {
 		authAxios()
-			.get('http://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/init/')
+			.get('https://cs25-bw-team-fly-and-fresh-be.herokuapp.com/api/adv/init/')
 			.then(res => {
 				console.log(res);
 				store.dispatch({ type: 'UPDATE_ROOM', payload: res.data });
