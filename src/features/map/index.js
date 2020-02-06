@@ -26,9 +26,7 @@ function MapTile(props) {
 			style={{
 				height: SPRITE_SIZE,
 				width: SPRITE_SIZE,
-			}}>
-			{/* {props.tile} */}
-		</div>
+			}}></div>
 	);
 }
 
@@ -36,7 +34,7 @@ function MapRow(props) {
 	return (
 		<div className='row'>
 			{props.tiles.map(tile => (
-				<MapTile tile={tile} />
+				<MapTile key={Math.random()} tile={tile} />
 			))}
 		</div>
 	);
@@ -45,13 +43,13 @@ function MapRow(props) {
 const Map = props => {
 	return (
 		<div
+			id='themap'
 			style={{
 				width: MAP_WIDTH,
 				height: MAP_HEIGHT,
-				// border: '4px solid white',
 			}}>
 			{props.tiles.map(row => (
-				<MapRow tiles={row} />
+				<MapRow key={Math.random()} tiles={row} />
 			))}
 		</div>
 	);

@@ -1,13 +1,10 @@
 const initialState = {
-	position: [400, 200],
-	spriteLocation: '0px 0px',
-	direction: 's',
-	walkIndex: 0,
+	room: [],
 };
 
 const playerReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'MOVE_PLAYER':
+		case 'UPDATE_ROOM':
 			return {
 				...action.payload,
 			};
