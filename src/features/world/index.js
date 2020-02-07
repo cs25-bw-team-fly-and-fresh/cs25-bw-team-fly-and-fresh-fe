@@ -127,6 +127,13 @@ const World = props => {
 			}}>
 			<Map />
 			<Player currentRoom={currentRoom} />
+			<div style={{ color: '#fff' }}>
+				<h4>{currentRoom.title}</h4>
+				<p>{currentRoom.description}</p>
+				{/* {currentRoom.players.map(player => {
+					return <p>{player}</p>;
+				})} */}
+			</div>
 		</div>
 	);
 };
